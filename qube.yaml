@@ -1,0 +1,51 @@
+id: 0719bec0-8c4c-4677-aff8-0a1151e39560
+name: Test
+apptype: api
+language: python
+toolchain:
+  id: 58e2fba2b5667d001e4a3346
+  name: my-python-tools-2
+opinion:
+  id: 58e2fb9fe2a801000e8cb43e
+  name: Qubeship Out of the box opinion
+endpoint:
+  id: 58e2fba32a0603000b3e58a6
+  name: Qubeship Sandbox Cluster
+  type: target
+pipeline: build_bake_test_deployment:v0.1
+security:
+  keys_loc: "conf/"
+notification:
+  type: slack
+  domain: 
+  channel: qubeship
+build:
+  skip: false
+  image:
+    name: python:3-onbuild
+    onbuild:
+      - pip install tox wheel && pip list && tox && python setup.py bdist_wheel
+  publish_artifact: dist/
+  lint: true
+bake:
+  skip: false
+  strategy: docker
+  script: Dockerfile
+  repositories:
+    - name: google
+      prefix: gcr.io/qubeship-partners
+      type: gcr
+test:
+  skip: true
+  functional:
+    provider: qubeship-sg
+deployment:
+  skip: false
+  continuous_deployment: true
+  service_name: test
+  environments:
+    prod:
+      - type: qubeship_managed
+        id: 58e2fba32a0603000b3e58a6
+        template_id: qube_external_app_v1
+        srcRepo: google
