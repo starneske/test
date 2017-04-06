@@ -12,16 +12,16 @@ import mongomock
 from pkg_resources import resource_filename
 from qube.src.commons.qube_config import QubeConfig
 
-HELLO_VERSION = "/v1/hello/version"
+HELLO_VERSION = "/v1/test/version"
 with patch('pymongo.mongo_client.MongoClient', new=mongomock.MongoClient):
-    os.environ['QUBE_SERVICE_MONGOALCHEMY_CONNECTION_STRING'] = ''
-    os.environ['QUBE_SERVICE_MONGOALCHEMY_SERVER'] = ''
-    os.environ['QUBE_SERVICE_MONGOALCHEMY_PORT'] = ''
-    os.environ['QUBE_SERVICE_MONGOALCHEMY_DATABASE'] = ''
+    os.environ['TEST_MONGOALCHEMY_CONNECTION_STRING'] = ''
+    os.environ['TEST_MONGOALCHEMY_SERVER'] = ''
+    os.environ['TEST_MONGOALCHEMY_PORT'] = ''
+    os.environ['TEST_MONGOALCHEMY_DATABASE'] = ''
     from qube.src.api.app import app
 
 
-class TestHelloVersionController(unittest.TestCase):
+class TestTestVersionController(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         print("setup")
@@ -32,7 +32,7 @@ class TestHelloVersionController(unittest.TestCase):
     def tearDown(self):
         print("teardown")
 
-    def test_hello_default_version(self, *args, **kwargs):
+    def test_test_default_version(self, *args, **kwargs):
         QubeConfig.get_config().QUBE_VERSION_FILE = resource_filename(
             'qube.src.resources', 'qube_sample_version_dontexist.txt')
         QubeConfig.get_config().version_str = None
@@ -44,7 +44,7 @@ class TestHelloVersionController(unittest.TestCase):
         self.assertEquals(result['version'],
                           QubeConfig.get_config().default_ver)
 
-    def test_hello_git_version(self, *args, **kwargs):
+    def test_test_git_version(self, *args, **kwargs):
         QubeConfig.get_config().QUBE_VERSION_FILE = resource_filename(
             'qube.src.resources', 'qube_sample_version.txt')
         QubeConfig.get_config().version_str = None

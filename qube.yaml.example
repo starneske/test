@@ -1,6 +1,6 @@
 ---
-name: qube_placeholder
-language: qube_language
+name: test
+language: python
 pipeline: build_bake_test_deployment:v0.1
 security:
   keys_loc: "conf/"
@@ -27,14 +27,14 @@ ports:
     - containerPort: 8443
       name: https
       protocol: TCP
-    - containerPort: qube_listener_port
+    - containerPort: 8191
       name: http
       protocol: TCP
   service_ports:
     - name: "http"
       protocol: "TCP"
       port: 80
-      targetPort: qube_listener_port
+      targetPort: 8191
     - name: "https"
       protocol: "TCP"
       port: 443
@@ -50,16 +50,16 @@ deployment:
 environment_variables:
   env:
   - name: DEFAULT_LISTENER_PORT
-    value: "qube_listener_port"
+    value: "8191"
   - name: AUTH_API_URL
     value: https://api.qubeship.io/v1/auth
   - name: VAULT_ADDR
     value: https://vault.qubeship.io
-  - name: QUBE_SERVICE_MONGOALCHEMY_SERVER
+  - name: TEST_MONGOALCHEMY_SERVER
     value: $(MONGO_SERVICE_HOST)
-  - name: QUBE_SERVICE_MONGOALCHEMY_PORT
+  - name: TEST_MONGOALCHEMY_PORT
     value: $(MONGO_SERVICE_PORT)
-  - name: QUBE_SERVICE_MONGOALCHEMY_DATABASE
+  - name: TEST_MONGOALCHEMY_DATABASE
     value: toolchain
   - name: CI_ADDR
     value: https://jenkins.qubeship.io

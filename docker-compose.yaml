@@ -1,16 +1,16 @@
 version: '2'
 # docker login -e $(gcloud auth list | grep ACTIVE | grep qubeship.io | awk '{print $2}')  -u _token -p "$(gcloud auth print-access-token)" https://gcr.io
 services:
-  qube_placeholder:
+  test:
     env_file: .env
     environment:
-      DEFAULT_LISTENER_PORT: ${QUBE_SERVICE_LISTENER_PORT}
+      DEFAULT_LISTENER_PORT: ${TEST_LISTENER_PORT}
       CONF_SERVER_TOKEN: ${CONF_SERVER_TOKEN}
       VAULT_TOKEN: ${VAULT_TOKEN}
       ENV_ID: ${ENV_ID}
-    image: "${QUBE_SERVICE_IMAGE}:${QUBE_SERVICE_IMAGE_VERSION}"
+    image: "${TEST_IMAGE}:${TEST_IMAGE_VERSION}"
     ports:
-      - "${QUBE_SERVICE_LISTENER_PORT}:${QUBE_SERVICE_LISTENER_PORT}"
+      - "${TEST_LISTENER_PORT}:${TEST_LISTENER_PORT}"
     depends_on:
        - qube_mongodb
     links:

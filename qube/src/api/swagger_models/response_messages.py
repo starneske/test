@@ -1,8 +1,8 @@
 from flask_restful_swagger_2 import Schema
 
-from qube.src.api.swagger_models.hello import HelloErrorModel
-from qube.src.api.swagger_models.hello import HelloModel
-from qube.src.api.swagger_models.hello import HelloModelPostResponse
+from qube.src.api.swagger_models.test import TestErrorModel
+from qube.src.api.swagger_models.test import TestModel
+from qube.src.api.swagger_models.test import TestModelPostResponse
 
 """
 the common response messages printed in swagger UI
@@ -11,7 +11,7 @@ the common response messages printed in swagger UI
 post_response_msgs = {
     '201': {
         'description': 'CREATED',
-        'schema': HelloModelPostResponse
+        'schema': TestModelPostResponse
     },
     '401': {
         'description': 'Unauthorized'
@@ -24,14 +24,14 @@ post_response_msgs = {
     },
     '500': {
         'description': 'Internal server error',
-        'schema': HelloErrorModel
+        'schema': TestErrorModel
     }
 }
 
 get_response_msgs = {
     '200': {
         'description': 'OK',
-        'schema': HelloModel
+        'schema': TestModel
     },
     '401': {
         'description': 'Unauthorized'
@@ -44,7 +44,7 @@ get_response_msgs = {
     },
     '500': {
         'description': 'Internal server error',
-        'schema': HelloErrorModel
+        'schema': TestErrorModel
     }
 }
 
@@ -63,7 +63,7 @@ put_response_msgs = {
     },
     '500': {
         'description': 'Internal server error',
-        'schema': HelloErrorModel
+        'schema': TestErrorModel
     }
 }
 
@@ -82,7 +82,7 @@ del_response_msgs = {
     },
     '500': {
         'description': 'Internal server error',
-        'schema': HelloErrorModel
+        'schema': TestErrorModel
     }
 }
 

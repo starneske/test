@@ -2,10 +2,10 @@
 # pylint: skip-file
 from setuptools import setup, find_packages
 
-setup(name='qube_placeholder',
+setup(name='test',
       version='0.1',
-      description='qube_placeholder',
-      url='http://github.com/Qubeship/qube_repo',
+      description='test',
+      url='http://github.com/Qubeship/test',
       author='Hyunji Kim',
       author_email='hyunji@qubeship.io',
       license='MIT',

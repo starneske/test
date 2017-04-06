@@ -38,7 +38,7 @@ setup() {
   #DEFAULT_LISTENER_PORT="9000"
   APISCHEME=${URLSCHEME:-http}
   URL="$APISCHEME://$APIHOST:${DEFAULT_LISTENER_PORT}"
-  URLPATH="$URL/v1/hello"
+  URLPATH="$URL/v1/test"
   create_sample_data
 }
 
